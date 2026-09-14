@@ -16,10 +16,10 @@ Tidak ada backend. Situs statis + kontrak. Semua perintah dijalankan dari folder
    KECUALI `node_modules`. Kredibilitas "check it yourself" bergantung pada ini.
    Lalu isi `web/config.js` → `links.github`, upload ulang.
 3. **Wallet.**
-   - Wallet deploy (BUKAN vault MROBINHOOD): isi ETH di Robinhood Chain.
+   - Wallet deploy (BUKAN vault CABEL Launcher): isi ETH di Robinhood Chain.
      Perkiraan gas deploy: gate table ~1,17 jt + Field ~1,66 jt gas. Dengan margin,
      0.001–0.005 ETH lebih dari cukup; lebihkan untuk step awal (~300 rb gas/ronde).
-   - Vault MROBINHOOD: siapkan wallet + ETH untuk launch pons (fee 0.0005 ETH)
+   - Vault CABEL Launcher: siapkan wallet + ETH untuk launch pons (fee 0.0005 ETH)
      dan dev buy (lihat H-0 langkah 1).
 4. **Gladi resik di testnet (46630).**
    ```bash
@@ -33,8 +33,8 @@ Tidak ada backend. Situs statis + kontrak. Semua perintah dijalankan dari folder
 
 ## H-0 (16 Sep): urutan eksekusi
 
-**~15:30 UTC — launch token di pons via MROBINHOOD**
-1. Buka MROBINHOOD → launch:
+**~15:30 UTC — launch token di pons via CABEL Launcher**
+1. Buka CABEL Launcher → launch:
    - Name: `CAIN & ABEL` · Ticker: `CABEL`
    - Logo: `https://cainabel.xyz/assets/logo.png`
    - Description: *Two real 8-bit processors fight to the death in shared memory,

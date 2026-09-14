@@ -7,7 +7,7 @@
 //   2. Field       (needs the gate table + the $CABEL token address)
 //   3. writes both addresses into web/config.js
 //
-// The $CABEL token itself launches on pons (via MROBINHOOD) — pass its
+// The $CABEL token itself launches on pons (via the CABEL Launcher) — pass its
 // address as CABEL_TOKEN=0x... . For a testnet rehearsal, --with-test-token
 // deploys the plain CainToken ERC20 instead, so the whole loop can be walked
 // at a fortieth of the price before T-0.
@@ -107,6 +107,7 @@ const cfgPath = join(root, 'web', 'config.js');
 let cfg = readFileSync(cfgPath, 'utf8');
 cfg = cfg.replace(/netlist: '[^']*'/, `netlist: '${netlistAddr}'`);
 cfg = cfg.replace(/token: '[^']*'/, `token: '${tokenAddr}'`);
+cfg = cfg.replace(/CA: '[^']*'/, `CA: '${tokenAddr}'`);
 cfg = cfg.replace(/field: '[^']*'/, `field: '${fieldAddr}'`);
 writeFileSync(cfgPath, cfg);
 console.log('\nweb/config.js updated. Remaining by hand:');

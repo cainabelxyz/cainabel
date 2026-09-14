@@ -4,7 +4,8 @@
 
 import { ArenaHarness } from './lib/sim.js';
 import { assemble, WARRIORS, disassemble } from './lib/asm.js';
-import { CONFIG } from './config.js';
+
+const CONFIG = window.CFG || {};
 
 const $ = (id) => document.getElementById(id);
 
@@ -18,16 +19,21 @@ for (const [id, href] of [
   ['link-gh', CONFIG.links.github], ['f-gh', CONFIG.links.github],
 ]) { const el = $(id); if (el && href) el.href = href; }
 
-if (CONFIG.addresses.token) {
-  $('ca').textContent = CONFIG.addresses.token;
-  $('ca-copy').hidden = false;
-  $('ca-copy').onclick = () => navigator.clipboard.writeText(CONFIG.addresses.token);
+// CA + buy link: no gating. If config failed to load, the HTML's own
+// values stand — never blank anything back to a placeholder.
+const CA = CONFIG.CA || CONFIG.addresses?.token || '';
+if (CA) {
+  document.querySelectorAll('.js-ca').forEach((el) => { el.textContent = CA; });
   const ex = $('ca-explorer');
-  ex.hidden = false;
-  ex.href = `${CONFIG.chain.explorer}/token/${CONFIG.addresses.token}`;
-  if (CONFIG.links.trade) { $('link-trade').hidden = false; $('link-trade').href = CONFIG.links.trade; }
-  for (const [id, a] of [['sp-netlist', CONFIG.addresses.netlist], ['sp-field', CONFIG.addresses.field], ['sp-token', CONFIG.addresses.token]]) {
-    if (a) $(id).textContent = a.slice(0, 6) + '…' + a.slice(-4);
+  if (ex) { ex.hidden = false; ex.href = `${CONFIG.chain.explorer}/token/${CA}`; }
+}
+if (CONFIG.PONS) {
+  document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.PONS + CA; });
+}
+if ($('ca-copy')) $('ca-copy').onclick = () => navigator.clipboard.writeText(CA || $('ca').textContent);
+if (CA) {
+  for (const [id, a] of [['sp-netlist', CONFIG.addresses?.netlist], ['sp-field', CONFIG.addresses?.field], ['sp-token', CA]]) {
+    if (a && $(id)) $(id).textContent = a.slice(0, 6) + '…' + a.slice(-4);
   }
 }
 

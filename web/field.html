@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260914">
 </head>
 <body>
 
@@ -46,10 +46,10 @@
 
 <div class="cabar">
   <span class="tag">$CABEL</span>
-  <code id="ca">deploys at T-0 · Sep 16 · 16:00 UTC</code>
-  <button id="ca-copy" hidden>Copy</button>
+  <code id="ca" class="js-ca">SOON</code>
+  <button id="ca-copy">Copy</button>
   <a id="ca-explorer" hidden href="#" target="_blank" rel="noopener">Explorer</a>
-  <a id="link-trade" class="trade" hidden href="#" target="_blank" rel="noopener">Trade →</a>
+  <a id="link-trade" class="trade js-buy" href="https://www.ponsfamily.com/launchpad/" target="_blank" rel="noopener">Buy $CABEL →</a>
 </div>
 
 <main id="top">
@@ -345,6 +345,7 @@
   </div>
 </footer>
 
-<script type="module" src="app.js"></script>
+<script>document.write('<script src="config.js?t=' + Date.now() + '"><\/script>');</script>
+<script type="module" src="app.js?v=20260915"></script>
 </body>
 </html>

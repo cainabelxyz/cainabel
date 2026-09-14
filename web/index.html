@@ -101,10 +101,16 @@
 
   @media (max-width: 760px) {
     body { overflow: auto; }
-    .gate { flex-direction: column; height: auto; min-height: 100dvh; }
-    .half { min-height: 52vh; flex: none !important; padding: 14vh 8vw 8vh; }
+    .gate { flex-direction: column; height: auto; }
+    .half { min-height: 44vh; flex: none !important; padding: 9vh 7vw 6vh; }
+    .half p { font-size: 14px; }
+    .half h2 { font-size: 52px; }
     .vsmark { display: none; }
-    .overlay-bottom { position: static; padding: 24px 0 34px; background: var(--bg); }
+    .overlay-top { position: static; padding: 26px 16px 14px; background: var(--bg); }
+    .overlay-top .brand .t { font-size: 14px; letter-spacing: .26em; }
+    .overlay-top .brand .s { font-size: 8.5px; letter-spacing: .16em; }
+    .overlay-bottom { position: static; padding: 22px 12px 34px; background: var(--bg); }
+    .countpill { flex-wrap: wrap; justify-content: center; text-align: center; }
     .cainside .edge, .abelside .edge { display: none; }
   }
 </style>
@@ -150,6 +156,12 @@
 <div class="vsmark">4:8</div>
 
 <div class="overlay-bottom">
+  <div class="countpill capill">
+    <span class="t0">$CABEL · CA</span>
+    <span class="js-ca mono" style="font-size:11px;max-width:46vw;overflow:hidden;text-overflow:ellipsis">SOON</span>
+    <a href="#" id="ca-copy-g" style="color:var(--dim);text-decoration:none">COPY</a>
+    <a class="js-buy" href="https://www.ponsfamily.com/launchpad/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">BUY →</a>
+  </div>
   <div class="countpill">
     <span class="t0">T-0 · THE FIELD OPENS</span>
     <span class="clock" id="countdown">--<span>d</span> --<span>h</span> --<span>m</span> --<span>s</span></span>
@@ -161,9 +173,10 @@
   </div>
 </div>
 
+<script>document.write('<script src="config.js?t=' + Date.now() + '"><\/script>');</script>
 <script type="module">
-  import { CONFIG } from './config.js';
-  const t0 = new Date(CONFIG.launchAtUTC).getTime();
+  const CONFIG = window.CFG || {};
+  const t0 = new Date(CONFIG.launchAtUTC || '2026-09-16T16:00:00Z').getTime();
   const el = document.getElementById('countdown');
   function tick() {
     const d = t0 - Date.now();
@@ -173,9 +186,14 @@
     el.innerHTML = `${dd}<span>d</span> ${String(hh).padStart(2,'0')}<span>h</span> ${String(mm).padStart(2,'0')}<span>m</span> ${String(ss).padStart(2,'0')}<span>s</span>`;
   }
   tick(); setInterval(tick, 1000);
-  if (CONFIG.links.github && CONFIG.links.github !== 'https://github.com/') {
-    document.getElementById('g-gh').href = CONFIG.links.github;
-  }
+  if (CONFIG.links?.github) document.getElementById('g-gh').href = CONFIG.links.github;
+  const CA = CONFIG.CA || CONFIG.addresses?.token || '';
+  if (CA) document.querySelectorAll('.js-ca').forEach((el) => { el.textContent = CA; });
+  if (CONFIG.PONS) document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.PONS + CA; });
+  document.getElementById('ca-copy-g').onclick = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(CA || document.querySelector('.js-ca').textContent);
+  };
 </script>
 </body>
 </html>

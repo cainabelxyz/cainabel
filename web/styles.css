@@ -31,6 +31,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* wide content scrolls in its own containers */
 }
 
 ::selection { background: var(--cain); color: #fff; }
@@ -284,6 +285,23 @@ footer { padding: 60px 0 80px; }
   margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--line);
   font-family: var(--mono); font-size: 10px; color: var(--faint); letter-spacing: .14em;
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+/* ---- small screens ---- */
+
+@media (max-width: 940px) {
+  .topbar { gap: 12px; }
+  .topbar nav { display: none; }
+  .topbar .social { display: none; }
+  .topbar .brand { white-space: nowrap; font-size: 13px; letter-spacing: .09em; }
+  .topbar .brand .brand-mark, .brand-mark { flex: none; }
+  .cabar { padding: 8px 14px; }
+  section { padding: 60px 0; }
+  .hero { padding: 40px 0 48px; }
+  .countdown { flex-wrap: wrap; row-gap: 4px; }
+  .countdown .clock { font-size: 18px; }
+  .fieldbox { padding: 14px; }
+  .lead { font-size: 16px; }
 }
 
 /* ---- workbench ---- */

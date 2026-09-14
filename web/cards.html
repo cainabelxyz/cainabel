@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CAIN &amp; ABEL · card generator</title>
+<!-- Internal content-kit card generator. 1600x900. Pick a card with ?c=h24|h12|h6|h1|spec|checks|gas|isa -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0b0c0e; --panel:#14171b; --line:#262b32; --text:#e8e6e1; --dim:#9aa1ab;
+    --faint:#5b636e; --cain:#e0443e; --abel:#4e9be0; --gold:#d8a63f; --ok:#5dbb63;
+    --mono:'IBM Plex Mono',monospace; --sans:'Space Grotesk',sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#000; }
+  .card {
+    width:1600px; height:900px; background:var(--bg); color:var(--text);
+    font-family:var(--sans); position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .card::before, .card::after { content:''; position:absolute; top:0; bottom:0; width:6px; }
+  .card::before { left:0; background:linear-gradient(var(--cain), transparent 75%); }
+  .card::after { right:0; background:linear-gradient(transparent 25%, var(--abel)); }
+  .gridbg {
+    position:absolute; inset:0; opacity:.5;
+    background-image:linear-gradient(rgba(38,43,50,.35) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(38,43,50,.35) 1px, transparent 1px);
+    background-size:64px 64px;
+  }
+  .brand { position:absolute; top:52px; font-family:var(--mono); font-size:22px; letter-spacing:.5em; color:var(--dim); }
+  .brand b { color:var(--gold); font-weight:400; }
+  .site { position:absolute; bottom:48px; font-family:var(--mono); font-size:18px; letter-spacing:.35em; color:var(--faint); }
+  .center { position:relative; text-align:center; z-index:2; padding:0 120px; }
+
+  .huge { font-family:var(--mono); font-size:300px; line-height:1; font-weight:500; }
+  .huge small { font-size:64px; color:var(--dim); letter-spacing:.3em; margin-left:24px; }
+  .sub { font-family:var(--mono); font-size:26px; letter-spacing:.28em; color:var(--dim); margin-top:34px; }
+  .gold { color:var(--gold); }
+  .redblue { background:linear-gradient(90deg, var(--cain), var(--abel)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+  .title { font-family:var(--mono); font-size:30px; letter-spacing:.4em; color:var(--gold); margin-bottom:44px; }
+  .rows { display:grid; gap:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; min-width:1000px; background:var(--panel); }
+  .row { display:flex; justify-content:space-between; gap:80px; padding:22px 44px; border-bottom:1px solid var(--line); font-size:27px; }
+  .row:last-child { border-bottom:none; }
+  .row .k { color:var(--dim); }
+  .row .v { font-family:var(--mono); }
+  .row .ok { color:var(--ok); }
+
+  .big2 { font-family:var(--mono); font-size:150px; line-height:1.05; }
+  .big2 .unit { font-size:44px; color:var(--dim); letter-spacing:.2em; }
+
+  .ops { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; min-width:1080px; }
+  .op { border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:20px 8px; font-family:var(--mono); font-size:30px; letter-spacing:.08em; }
+  .op.lethal { border-color:#7a2a27; color:var(--cain); }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="gridbg"></div>
+  <div class="brand">CAIN <b>&amp;</b> ABEL · $CABEL</div>
+  <div class="center" id="content"></div>
+  <div class="site" id="siteline">CAINABEL.XYZ</div>
+</div>
+<script>
+const c = new URLSearchParams(location.search).get('c') || 'h24';
+const el = document.getElementById('content');
+const CD = {
+  h24: ['24', 'HOURS', 'TWO DIES · ONE RAM · NO OWNER · <span class="gold">ONE SURVIVOR</span>'],
+  h12: ['12', 'HOURS', '1,277 NAND GATES PER DIE · BUILT FROM ONE PRIMITIVE'],
+  h6:  ['06', 'HOURS', '528,384 TEST VECTORS · <span style="color:var(--ok)">ZERO FAILURES</span>'],
+  h1:  ['01', 'HOUR', 'NO PRESALE · NO ALLOWLIST · <span class="gold">WHOEVER PAYS, KEEPS</span>'],
+};
+if (CD[c]) {
+  const [n, u, sub] = CD[c];
+  el.innerHTML = `<div class="huge redblue">${n}<small>${u}</small></div>
+    <div class="sub">${sub}</div>
+    <div class="sub gold" style="margin-top:18px">THE FIELD OPENS · SEP 16 · 16:00 UTC</div>`;
+} else if (c === 'spec') {
+  el.innerHTML = `<div class="title">CA-8 · READ FROM THE NETLIST</div>
+  <div class="rows">
+    <div class="row"><span class="k">NAND gates</span><span class="v">2 × 1,277 — one primitive, nothing else</span></div>
+    <div class="row"><span class="k">Flip-flops</span><span class="v">2 × 88</span></div>
+    <div class="row"><span class="k">The field</span><span class="v">256 words × 16 bit, shared, hostile</span></div>
+    <div class="row"><span class="k">Instruction set</span><span class="v">16 opcodes · one of them is death</span></div>
+    <div class="row"><span class="k">Whole match state</span><span class="v">256 bits — one storage slot exactly</span></div>
+    <div class="row"><span class="k">Network</span><span class="v">Robinhood Chain · 4663</span></div>
+  </div>`;
+} else if (c === 'checks') {
+  el.innerHTML = `<div class="title">FIVE CHECKS · OR NO NETLIST SHIPS</div>
+  <div class="rows">
+    <div class="row"><span class="k">01 · exhaustive vectors</span><span class="v ok">528,384 · zero failures</span></div>
+    <div class="row"><span class="k">02 · the independent model</span><span class="v ok">95,267 edges · agrees</span></div>
+    <div class="row"><span class="k">03 · whole matches, fought twice</span><span class="v ok">24,466 rounds · every verdict agrees</span></div>
+    <div class="row"><span class="k">04 · liveness</span><span class="v ok">20,000 edges · survives</span></div>
+    <div class="row"><span class="k">05 · the compiled contract, in a real EVM</span><span class="v ok">identical, block for block</span></div>
+  </div>
+  <div class="sub" style="margin-top:36px">npm run silicon · npm run evm — RERUNS ON YOUR MACHINE</div>`;
+} else if (c === 'gas') {
+  el.innerHTML = `<div class="title">MEASURED, NOT ESTIMATED</div>
+  <div class="big2">297,154 <span class="unit">GAS / ROUND</span></div>
+  <div class="sub" style="margin-top:40px">AND A ROUND IS <span style="color:var(--cain)">BOTH</span> <span style="color:var(--abel)">DIES</span> — EVERY GATE, WALKED</div>
+  <div class="sub">UP TO 256 ROUNDS IN ONE TRANSACTION</div>`;
+} else if (c === 'endcard') {
+  document.querySelector('.gridbg').style.cssText = "position:absolute;inset:0;background:url('assets/og.jpg') center/cover;filter:brightness(.5)";
+  document.querySelector('.brand').style.display = 'none';
+  document.getElementById('siteline').style.display = 'none';
+  el.innerHTML = `<div style="height:340px"></div>
+    <div class="sub" style="font-size:44px;letter-spacing:.18em;color:var(--text)">TWO BROTHERS. ONE FIELD. ONE SURVIVOR.</div>
+    <div class="sub gold" style="font-size:34px;margin-top:26px">$CABEL · SEP 16 · 16:00 UTC · CAINABEL.XYZ</div>`;
+} else if (c === 'isa') {
+  el.innerHTML = `<div class="title">16 OPCODES · ONE OF THEM IS DEATH</div>
+  <div class="ops">
+    <div class="op lethal">dat</div><div class="op">mov</div><div class="op">ldi</div><div class="op">add</div>
+    <div class="op">sub</div><div class="op">nnd</div><div class="op">xor</div><div class="op">shl</div>
+    <div class="op">shr</div><div class="op">ld</div><div class="op lethal">st</div><div class="op">jmp</div>
+    <div class="op">jz</div><div class="op">jnz</div><div class="op">in</div><div class="op">out</div>
+  </div>
+  <div class="sub" style="margin-top:40px"><span style="color:var(--cain)">st</span> CAN ONLY PLANT A DAT BOMB — CODE ISN'T COPIED HERE, IT'S KILLED</div>`;
+}
+document.title = 'card-' + c;
+</script>
+</body>
+</html>

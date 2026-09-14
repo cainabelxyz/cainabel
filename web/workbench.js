@@ -3,7 +3,8 @@
 
 import { ArenaHarness } from './lib/sim.js';
 import { assemble, WARRIORS, AsmError, disassemble } from './lib/asm.js';
-import { CONFIG } from './config.js';
+
+const CONFIG = window.CFG || {};
 
 const $ = (id) => document.getElementById(id);
 const netlist = await fetch('netlist.json').then((r) => r.json());
