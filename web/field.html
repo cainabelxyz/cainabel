@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAIN &amp; ABEL · two brothers, one field, one survivor</title>
+<meta name="description" content="Two real 8-bit processors, built gate by gate from NAND alone, fight to the death in 512 bytes of shared RAM inside a contract. The oldest fight in the book, executed on-chain and checkable by anyone.">
+<meta property="og:title" content="CAIN & ABEL — the field">
+<meta property="og:description" content="Two gate-level processors fight in shared memory, on-chain. Whoever pays for a round is his brother's keeper.">
+<meta property="og:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta property="og:url" content="https://cainabel.xyz/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta name="twitter:site" content="@cainabelxyz">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <svg class="brand-mark" viewBox="0 0 32 32"><rect width="15" height="32" fill="#e0443e"/><rect x="17" width="15" height="32" fill="#4e9be0"/></svg>
+    CAIN &amp; ABEL
+  </a>
+  <nav>
+    <a href="#field">The Field</a>
+    <a href="#how">How it works</a>
+    <a href="#isa">Instruction set</a>
+    <a href="#checks">The checks</a>
+    <a href="#token">$CABEL</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="social">
+    <a id="link-x" href="#" title="X" target="_blank" rel="noopener">𝕏</a>
+    <a id="link-tg" href="#" title="Telegram" target="_blank" rel="noopener">✈</a>
+    <a id="link-gh" href="#" title="Source" target="_blank" rel="noopener">&lt;/&gt;</a>
+  </div>
+  <a class="btn" href="workbench.html">The workbench</a>
+</header>
+
+<div class="cabar">
+  <span class="tag">$CABEL</span>
+  <code id="ca">deploys at T-0 · Sep 16 · 16:00 UTC</code>
+  <button id="ca-copy" hidden>Copy</button>
+  <a id="ca-explorer" hidden href="#" target="_blank" rel="noopener">Explorer</a>
+  <a id="link-trade" class="trade" hidden href="#" target="_blank" rel="noopener">Trade →</a>
+</div>
+
+<main id="top">
+
+<!-- ======================= HERO ======================= -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">ONE PRIMITIVE · TWO BROTHERS · <b>ONE SURVIVOR</b></div>
+      <h1>The oldest fight in the book, executed <span class="cain">gate</span> by <span class="abel">gate</span>.</h1>
+      <p class="lead">
+        Two real 8-bit processors — <b>1,277 NAND gates each</b>, placed one gate
+        at a time by a program you can run — share 512 bytes of RAM inside a
+        contract. They bomb, they scan, they hide. The contract walks every gate
+        of both dies, and untouched memory is death. <b>One survives.</b>
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#field">Watch them fight →</a>
+        <a class="btn" href="workbench.html">Write a warrior</a>
+        <a class="btn" href="#checks">Check it yourself</a>
+      </div>
+      <div class="countdown">
+        <span class="t0">T-0 · The Field opens</span>
+        <span class="clock" id="countdown">--<span>d</span> --<span>h</span> --<span>m</span> --<span>s</span></span>
+      </div>
+    </div>
+
+    <!-- live field -->
+    <div class="fieldbox" id="field">
+      <div class="head">
+        <span>CA-8 × 2 · GATE-LEVEL · IN YOUR TAB</span>
+        <span class="live">LIVE SILICON</span>
+      </div>
+      <div class="diegrid">
+        <div class="die" id="die-cain">
+          <canvas id="cv-cain" width="128" height="128"></canvas>
+          <div class="name cain">CAIN</div>
+          <div class="meta" id="meta-cain">PC 0x00 · OUT 0</div>
+        </div>
+        <div class="battlefield">
+          <canvas id="cv-field" width="160" height="160"></canvas>
+          <div class="cap">THE FIELD · 256 WORDS</div>
+        </div>
+        <div class="die" id="die-abel">
+          <canvas id="cv-abel" width="128" height="128"></canvas>
+          <div class="name abel">ABEL</div>
+          <div class="meta" id="meta-abel">PC 0x80 · OUT 0</div>
+        </div>
+      </div>
+      <div class="fieldctl">
+        <select id="matchup"></select>
+        <button id="btn-pause">Pause</button>
+        <button id="btn-step">Step</button>
+        <button id="btn-reset">Rematch</button>
+        <select id="speed">
+          <option value="2">2 rounds/s</option>
+          <option value="8" selected>8 rounds/s</option>
+          <option value="30">30 rounds/s</option>
+          <option value="120">120 rounds/s</option>
+        </select>
+        <span class="verdict" id="verdict">ROUND 0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="statrow" id="statrow">
+      <div class="stat"><div class="k">NAND gates at war</div><div class="v" id="s-gates">2 × 1,277</div></div>
+      <div class="stat"><div class="k">Flip-flops</div><div class="v">2 × 88</div></div>
+      <div class="stat"><div class="k">Shared battlefield</div><div class="v">512 B</div></div>
+      <div class="stat"><div class="k">Whole match state</div><div class="v">1 slot</div></div>
+      <div class="stat"><div class="k">Gas per round, measured</div><div class="v" id="s-gas">297k</div></div>
+      <div class="stat"><div class="k">Rounds per tx</div><div class="v">up to 256</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= WHY ======================= -->
+<section id="why">
+  <div class="wrap">
+    <div class="kicker">§ 01 · THE PREMISE</div>
+    <h2>Their processor runs alone.<br>Ours are brothers.</h2>
+    <p class="lead">
+      An on-chain processor that computes in private is a proof of concept. Two
+      of them sharing one memory is a <b>game</b> — the 1984 game, Core War,
+      the one that taught a generation what a program fighting for its life
+      looks like. We rebuilt it at the gate level, put both dies inside a
+      contract, and opened the clock to anybody with gas.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="num">RULE 01</div>
+        <h3>The field is the program</h3>
+        <p>No ROM, no shelter. Both warriors live in the same 256 words of RAM
+        they fight over. A store plants a dead word — a DAT bomb carrying your
+        byte — and a core that executes one dies on the spot.</p>
+      </div>
+      <div class="card">
+        <div class="num">RULE 02</div>
+        <h3>Whoever pays, keeps</h3>
+        <p>step() has no owner, no keeper contract, no schedule. You pay for a
+        round, you are your brother's keeper for that round, and the byte you
+        send is what your champion reads on its input port.</p>
+      </div>
+      <div class="card">
+        <div class="num">RULE 03</div>
+        <h3>The offering goes to the living</h3>
+        <p>Every sponsored round pays the keeper a fixed wage of $CABEL and
+        drops a share into the match offering. When a brother falls, the
+        keepers of the survivor split it, by rounds kept.</p>
+      </div>
+      <div class="card">
+        <div class="num">RULE 04</div>
+        <h3>Nothing here is a recording</h3>
+        <p>The dies drawn above are the same 1,277-gate netlist the contract
+        walks, running in your tab. Every fight on chain can be replayed from
+        its event log, gate for gate, by anyone, forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VS ======================= -->
+<section id="vs">
+  <div class="wrap">
+    <div class="kicker">§ 02 · THE OTHER PROCESSOR</div>
+    <h2>Respect to the pioneer. Now the numbers.</h2>
+    <p class="lead">
+      STEPPER put a real processor inside a contract and proved every claim it
+      made. We kept the discipline — netlist public, checks published, gas
+      measured in a real EVM — and changed what the machine is <b>for</b>.
+    </p>
+    <div class="vs tablewrap">
+      <table>
+        <tr><th></th><th>STEPPER ST-8</th><th>CAIN &amp; ABEL CA-8 × 2</th></tr>
+        <tr><td>Dies per contract</td><td class="them">1, alone</td><td class="us win">2, at war</td></tr>
+        <tr><td>NAND gates walked</td><td class="them">2,161</td><td class="us">2,554 per round (both dies)</td></tr>
+        <tr><td>Gas per cycle, measured</td><td class="them">401,144</td><td class="us win" id="vs-gas">≈148,600 — 2.7× less</td></tr>
+        <tr><td>Cycles per transaction</td><td class="them">1</td><td class="us win">up to 512 (256 rounds × 2 dies)</td></tr>
+        <tr><td>The program lives in</td><td class="them">ROM, immutable, safe</td><td class="us">shared RAM, hostile, overwritable</td></tr>
+        <tr><td>A step buys</td><td class="them">emission</td><td class="us win">emission + a side + a share of the offering</td></tr>
+        <tr><td>Machine state per slot</td><td class="them">one die, 167 bits</td><td class="us win">the whole war — both dies, 256 bits exactly</td></tr>
+        <tr><td>When nobody steps</td><td class="them">the machine stands still</td><td class="us">the fight stands still — and the offering waits</td></tr>
+      </table>
+    </div>
+    <p class="note">Their numbers are quoted from steppercpu.tech as published. Ours come from
+    <span class="mono">npm run evm</span>, which deploys our compiled contracts into a real EVM and
+    fights a full match through them — the report this page loads is the file that run wrote.</p>
+  </div>
+</section>
+
+<!-- ======================= HOW ======================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">§ 03 · A MATCH, START TO VERDICT</div>
+    <h2>Four calls. No permission.</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01 · createMatch()</div>
+        <h3>Field the brothers</h3>
+        <p>Anyone submits two programs, up to 128 words each. CAIN loads at
+        word 0, ABEL at word 128, every flip-flop of both dies at zero, and
+        the rest of the field is DAT — lethal ground.</p>
+      </div>
+      <div class="card">
+        <div class="num">02 · step()</div>
+        <h3>Keep your brother</h3>
+        <p>Pick a side, send a byte, pay for up to 256 rounds. One round is
+        one clock edge for CAIN, then one for ABEL — every gate of both dies,
+        walked in the EVM. Your wage in $CABEL is paid the same transaction.</p>
+      </div>
+      <div class="card">
+        <div class="num">03 · the verdict</div>
+        <h3>One brother falls</h3>
+        <p>A core that executes DAT halts forever — bombed, scanned out, or
+        led astray. The contract seals the verdict in the same slot the war
+        was fought in, and emits it for every replayer to check.</p>
+      </div>
+      <div class="card">
+        <div class="num">04 · claimPot()</div>
+        <h3>Split the offering</h3>
+        <p>Keepers of the winning side split the match offering pro rata by
+        rounds kept. A draw — both fall in the same round — splits it across
+        everyone who kept either brother.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WARRIORS ======================= -->
+<section id="warriors">
+  <div class="wrap">
+    <div class="kicker">§ 04 · THE HOUSE WARRIORS</div>
+    <h2>Three openings. Then it's yours.</h2>
+    <p class="lead">
+      These ship with the field and run in the demo above — assembled by the
+      same assembler the workbench uses, on the same gates. The metagame after
+      them is nobody's property.
+    </p>
+    <div class="warriors" id="warrior-cards"></div>
+    <p class="note">Write your own in the <a href="workbench.html">workbench</a> — assembler,
+    live dies, and a practice field, free, no wallet, before a single unit of gas.</p>
+  </div>
+</section>
+
+<!-- ======================= ISA ======================= -->
+<section id="isa">
+  <div class="wrap">
+    <div class="kicker">§ 05 · INSTRUCTION SET</div>
+    <h2>Sixteen opcodes. One of them is death.</h2>
+    <p class="lead">
+      Four bits of opcode, so sixteen is arithmetic, not aesthetics. 16-bit
+      words, eight registers, an 8-bit PC over 256 shared words. Every
+      instruction retires in two edges except <span class="mono">ld</span>,
+      which takes a third — the address latches on one edge and the data
+      arrives on the next, the way synchronous memory has behaved since the
+      first one was built.
+    </p>
+    <div class="ops" id="ops"></div>
+    <p class="note">
+      <span class="mono">st</span> can only write a word whose opcode is 0 —
+      a DAT bomb carrying your byte. Code cannot be copied, only killed:
+      warriors here don't replicate, they bomb, scan and hide. And
+      <span class="mono">nnd</span> is in the set because it is the only
+      primitive the dies are built from.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= CHECKS ======================= -->
+<section id="checks">
+  <div class="wrap">
+    <div class="kicker">§ 06 · VERIFICATION</div>
+    <h2>Five checks, and none of them is the same check twice.</h2>
+    <p class="lead">
+      The build refuses to write a netlist unless every check passes —
+      verification is not a step you can skip, because nothing exists until
+      it succeeds. Run them yourself: <span class="mono">npm run silicon</span>,
+      then <span class="mono">npm run evm</span>.
+    </p>
+    <div class="checks" id="checks-list"></div>
+  </div>
+</section>
+
+<!-- ======================= TOKEN ======================= -->
+<section id="token">
+  <div class="wrap">
+    <div class="kicker">§ 07 · $CABEL</div>
+    <h2>The token is the clock. The clock is the fight.</h2>
+    <p class="lead">
+      Fixed at one billion, minted whole at birth, no mint function anywhere —
+      not for us, not for anyone. The mining reserve leaves one kept round at
+      a time, to whoever paid for it, plus the offering the survivors split.
+    </p>
+    <div class="tok">
+      <div class="speclist">
+        <div class="sphead">SPECIFICATION · READ FROM THE NETLIST</div>
+        <div class="row"><dt>Part</dt><dd>CA-8 · two dies</dd></div>
+        <div class="row"><dt>NAND gates</dt><dd id="sp-gates">1,277 per die · 2,554 at war</dd></div>
+        <div class="row"><dt>Flip-flops</dt><dd>88 per die</dd></div>
+        <div class="row"><dt>The field</dt><dd>256 words × 16 bit, shared</dd></div>
+        <div class="row"><dt>Match state</dt><dd>256 bits — one slot exactly</dd></div>
+        <div class="row"><dt>Clock</dt><dd>1 round per step, ≤256 per tx</dd></div>
+        <div class="row"><dt>Network</dt><dd>Robinhood Chain · 4663</dd></div>
+        <div class="row"><dt>Gate table</dt><dd id="sp-netlist">deploys at T-0</dd></div>
+        <div class="row"><dt>The field contract</dt><dd id="sp-field">deploys at T-0</dd></div>
+        <div class="row"><dt>Token</dt><dd id="sp-token">deploys at T-0</dd></div>
+      </div>
+      <div class="speclist">
+        <div class="sphead">WHAT A KEPT ROUND PAYS · MEASURED, NOT FORECAST</div>
+        <div class="row"><dt>Supply, fixed at birth</dt><dd>1,000,000,000 $CABEL</dd></div>
+        <div class="row"><dt>Mining reserve</dt><dd>40% · leaves per round only</dd></div>
+        <div class="row"><dt>Keeper's wage</dt><dd>fixed $CABEL per round, immutable</dd></div>
+        <div class="row"><dt>The offering</dt><dd>fixed accrual per round → winners</dd></div>
+        <div class="row"><dt>Gas, one round (both dies)</dt><dd id="tk-gas">297,154 · measured</dd></div>
+        <div class="row"><dt>Gas per cycle at batch</dt><dd id="tk-cycle">≈148,600 vs their 401,144</dd></div>
+        <div class="row"><dt>Who can step</dt><dd>anybody</dd></div>
+        <div class="row"><dt>Who can be excluded</dt><dd>nobody</dd></div>
+        <div class="row"><dt>Launch</dt><dd class="gold">SEP 16 · 16:00 UTC</dd></div>
+      </div>
+    </div>
+    <p class="note">Emission is arithmetic; gas is measured. Neither is a forecast. The
+    figures above are written by <span class="mono">npm run evm</span> against the compiled
+    contracts — numbers nobody ran are just decoration.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>CAIN &amp; ABEL</h4>
+        <p>Two real 8-bit processors fighting to the death in shared memory,
+        inside a contract. One primitive, one field, one survivor — and a
+        clock that belongs to whoever keeps it.</p>
+      </div>
+      <div>
+        <h4>The machine</h4>
+        <a href="#why">The premise</a>
+        <a href="#isa">Instruction set</a>
+        <a href="#checks">The five checks</a>
+      </div>
+      <div>
+        <h4>Fight</h4>
+        <a href="workbench.html">The workbench</a>
+        <a href="#warriors">House warriors</a>
+        <a href="#how">How a match works</a>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <a id="f-x" href="#" target="_blank" rel="noopener">X</a>
+        <a id="f-tg" href="#" target="_blank" rel="noopener">Telegram</a>
+        <a id="f-gh" href="#" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+    <div class="footline">
+      <span>NAND → OPTIMISER → FIVE CHECKS → GATE TABLE → EVM</span>
+      <span>CA-8 · 2 × 1,277 NAND · AM I MY BROTHER'S KEEPER? — WHOEVER PAYS THE GAS IS.</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

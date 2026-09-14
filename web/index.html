@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAIN &amp; ABEL · $CABEL · two brothers, one field, one survivor</title>
+<meta name="description" content="Two real 8-bit processors fight to the death in shared memory, inside a contract on Robinhood Chain. Pick a brother. Keep his clock. Split the offering.">
+<meta property="og:title" content="CAIN & ABEL · $CABEL">
+<meta property="og:description" content="The oldest fight in the book, executed gate by gate, on-chain. T-0 · Sep 16 · 16:00 UTC.">
+<meta property="og:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta property="og:url" content="https://cainabel.xyz/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta name="twitter:site" content="@cainabelxyz">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0c0e; --text: #e8e6e1; --dim: #9aa1ab; --faint: #5b636e;
+    --cain: #e0443e; --abel: #4e9be0; --gold: #d8a63f; --line: #262b32;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Space Grotesk', -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow: hidden; }
+
+  .gate { display: flex; height: 100vh; height: 100dvh; }
+  .half {
+    position: relative; flex: 1; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 6vh 5vw 17vh; text-decoration: none; color: var(--text);
+    overflow: hidden; transition: flex .55s cubic-bezier(.6,.05,.25,1);
+  }
+  .half:hover { flex: 1.45; }
+  .half .bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center 30%;
+    filter: brightness(.62) saturate(.9); transform: scale(1.04);
+    transition: filter .55s ease, transform .8s ease;
+  }
+  .half:hover .bg { filter: brightness(.95) saturate(1.05); transform: scale(1.0); }
+  .half .shade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(11,12,14,.94) 0%, rgba(11,12,14,.45) 38%, rgba(11,12,14,.15) 70%, rgba(11,12,14,.35) 100%);
+  }
+  .half .inner { position: relative; z-index: 2; max-width: 520px; }
+  .half .role { font-family: var(--mono); font-size: 11px; letter-spacing: .28em; color: var(--dim); }
+  .half h2 { font-family: var(--mono); font-weight: 500; font-size: clamp(40px, 6vw, 84px); letter-spacing: .04em; margin: 10px 0 12px; }
+  .cainside h2 { color: #ff6b64; text-shadow: 0 0 60px rgba(224,68,62,.35); }
+  .abelside h2 { color: #7cc0ff; text-shadow: 0 0 60px rgba(78,155,224,.3); }
+  .half p { color: var(--dim); font-size: 15px; line-height: 1.55; max-width: 420px; }
+  .half .enter {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 26px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  }
+  .half .enter .arrow { transition: transform .3s ease; }
+  .half:hover .enter .arrow { transform: translateX(8px); }
+  .cainside .enter { color: #ff8a84; }
+  .abelside .enter { color: #9ccdf5; }
+  .half .edge { position: absolute; top: 0; bottom: 0; width: 2px; z-index: 3; }
+  .cainside .edge { right: 0; background: linear-gradient(var(--cain), transparent 60%); }
+  .abelside .edge { left: 0; background: linear-gradient(transparent 40%, var(--abel)); }
+
+  .overlay-top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: center; padding-top: 4.5vh; pointer-events: none;
+  }
+  .overlay-top .brand {
+    pointer-events: auto; text-decoration: none; color: var(--text); text-align: center;
+  }
+  .overlay-top .brand .t { font-family: var(--mono); font-size: 15px; letter-spacing: .34em; }
+  .overlay-top .brand .t .amp { color: var(--gold); }
+  .overlay-top .brand .s { font-family: var(--mono); font-size: 10px; letter-spacing: .3em; color: var(--faint); margin-top: 6px; }
+
+  .overlay-bottom {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding-bottom: 3.2vh; pointer-events: none;
+  }
+  .countpill {
+    pointer-events: auto; font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
+    background: rgba(11,12,14,.8); border: 1px solid var(--line); border-radius: 999px;
+    padding: 10px 22px; backdrop-filter: blur(8px); display: flex; gap: 14px; align-items: baseline;
+  }
+  .countpill .t0 { color: var(--gold); font-size: 10px; letter-spacing: .22em; }
+  .countpill .clock span { color: var(--faint); font-size: 10px; }
+  .socials { pointer-events: auto; display: flex; gap: 16px; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; }
+  .socials a { color: var(--faint); text-decoration: none; }
+  .socials a:hover { color: var(--text); }
+
+  .vsmark {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 9;
+    font-family: var(--mono); font-size: 13px; letter-spacing: .1em; color: var(--faint);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 999px;
+    width: 52px; height: 52px; display: grid; place-items: center; pointer-events: none;
+  }
+
+  @media (max-width: 760px) {
+    body { overflow: auto; }
+    .gate { flex-direction: column; height: auto; min-height: 100dvh; }
+    .half { min-height: 52vh; flex: none !important; padding: 14vh 8vw 8vh; }
+    .vsmark { display: none; }
+    .overlay-bottom { position: static; padding: 24px 0 34px; background: var(--bg); }
+    .cainside .edge, .abelside .edge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay-top">
+  <a class="brand" href="index.html">
+    <div class="t">CAIN <span class="amp">&amp;</span> ABEL</div>
+    <div class="s">$CABEL · ROBINHOOD CHAIN · ONE FIELD, ONE SURVIVOR</div>
+  </a>
+</div>
+
+<main class="gate">
+  <a class="half cainside" href="field.html">
+    <div class="bg" style="background-image:url('assets/cain.jpg')"></div>
+    <div class="shade"></div>
+    <div class="edge"></div>
+    <div class="inner">
+      <div class="role">THE FIELD · WHAT THE MACHINE IS</div>
+      <h2>CAIN</h2>
+      <p>Two real 8-bit dies — 1,277 NAND gates each — fight to the death in
+      512 bytes of shared RAM, inside a contract. The story, the silicon, the
+      five checks, and $CABEL.</p>
+      <span class="enter">Enter the field <span class="arrow">→</span></span>
+    </div>
+  </a>
+  <a class="half abelside" href="workbench.html">
+    <div class="bg" style="background-image:url('assets/abel.jpg')"></div>
+    <div class="shade"></div>
+    <div class="edge"></div>
+    <div class="inner">
+      <div class="role">THE WORKBENCH · THE LAUNCHPAD</div>
+      <h2>ABEL</h2>
+      <p>Write a warrior, watch it fight on the real gates in your tab, then
+      field it on-chain — assembler, live dies, practice field. Free, no
+      wallet, until you say so.</p>
+      <span class="enter">Enter the workbench <span class="arrow">→</span></span>
+    </div>
+  </a>
+</main>
+
+<div class="vsmark">4:8</div>
+
+<div class="overlay-bottom">
+  <div class="countpill">
+    <span class="t0">T-0 · THE FIELD OPENS</span>
+    <span class="clock" id="countdown">--<span>d</span> --<span>h</span> --<span>m</span> --<span>s</span></span>
+  </div>
+  <div class="socials">
+    <a id="g-x" href="https://x.com/cainabelxyz" target="_blank" rel="noopener">X</a>
+    <a id="g-tg" href="https://t.me/cainabelxyz" target="_blank" rel="noopener">TELEGRAM</a>
+    <a id="g-gh" href="#" target="_blank" rel="noopener">SOURCE</a>
+  </div>
+</div>
+
+<script type="module">
+  import { CONFIG } from './config.js';
+  const t0 = new Date(CONFIG.launchAtUTC).getTime();
+  const el = document.getElementById('countdown');
+  function tick() {
+    const d = t0 - Date.now();
+    if (d <= 0) { el.textContent = 'THE FIELD IS OPEN'; return; }
+    const dd = Math.floor(d / 864e5), hh = Math.floor(d / 36e5) % 24,
+      mm = Math.floor(d / 6e4) % 60, ss = Math.floor(d / 1e3) % 60;
+    el.innerHTML = `${dd}<span>d</span> ${String(hh).padStart(2,'0')}<span>h</span> ${String(mm).padStart(2,'0')}<span>m</span> ${String(ss).padStart(2,'0')}<span>s</span>`;
+  }
+  tick(); setInterval(tick, 1000);
+  if (CONFIG.links.github && CONFIG.links.github !== 'https://github.com/') {
+    document.getElementById('g-gh').href = CONFIG.links.github;
+  }
+</script>
+</body>
+</html>

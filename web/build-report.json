@@ -1,0 +1,61 @@
+{
+  "generated": "2026-09-14T05:29:15.657Z",
+  "part": "CA-8",
+  "gates": {
+    "placed": 1516,
+    "shipped": 1277,
+    "dropped": 239
+  },
+  "flipFlops": 88,
+  "regions": {
+    "CTRL": 32,
+    "DECODE": 104,
+    "REGS": 692,
+    "ALU": 267,
+    "PC": 92,
+    "FLAGS": 10,
+    "IO": 80
+  },
+  "checks": {
+    "vectors": 528384,
+    "modelEdges": 95267,
+    "arenaRounds": 24466
+  },
+  "matches": {
+    "DWARF vs DWARF": "draw in 38 rounds",
+    "DWARF vs HUNTER": "red in 23 rounds",
+    "DWARF vs TURTLE": "red in 14 rounds",
+    "HUNTER vs DWARF": "blue in 40 rounds",
+    "HUNTER vs HUNTER": "blue in 87 rounds",
+    "HUNTER vs TURTLE": "red in 48 rounds",
+    "TURTLE vs DWARF": "blue in 14 rounds",
+    "TURTLE vs HUNTER": "both alive after 6000",
+    "TURTLE vs TURTLE": "both alive after 6000",
+    "RND0 vs DWARF": "both alive after 6000",
+    "RND1 vs DWARF": "blue in 30 rounds",
+    "RND2 vs DWARF": "blue in 2 rounds",
+    "RND3 vs DWARF": "blue in 20 rounds",
+    "RND4 vs DWARF": "blue in 4 rounds",
+    "RND5 vs DWARF": "blue in 11 rounds",
+    "RND6 vs DWARF": "blue in 40 rounds",
+    "RND7 vs DWARF": "blue in 9 rounds",
+    "RND8 vs DWARF": "blue in 6 rounds",
+    "RND9 vs DWARF": "blue in 4 rounds",
+    "RND10 vs DWARF": "blue in 14 rounds",
+    "RND11 vs DWARF": "blue in 8 rounds",
+    "RND12 vs DWARF": "blue in 10 rounds",
+    "RND13 vs DWARF": "blue in 18 rounds",
+    "RND14 vs DWARF": "blue in 4 rounds",
+    "RND15 vs DWARF": "blue in 12 rounds",
+    "RND16 vs DWARF": "both alive after 6000",
+    "RND17 vs DWARF": "blue in 4 rounds",
+    "RND18 vs DWARF": "blue in 2 rounds",
+    "RND19 vs DWARF": "blue in 4 rounds"
+  },
+  "arena": {
+    "redBase": 0,
+    "blueBase": 128,
+    "ramWords": 256,
+    "wordBits": 16
+  }
+}

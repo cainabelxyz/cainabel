@@ -1,0 +1,25 @@
+{
+  "name": "cainabel",
+  "version": "1.0.0",
+  "description": "CAIN & ABEL — two gate-level 8-bit processors fighting to the death in shared memory, on-chain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "silicon": "node silicon/build.js",
+    "evm": "node scripts/evm-check.js",
+    "serve": "python3 -m http.server 8123 --directory web",
+    "deploy": "node scripts/deploy.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@ethereumjs/common": "^10.1.3",
+    "@ethereumjs/util": "^10.1.3",
+    "@ethereumjs/vm": "^10.1.3",
+    "ethereum-cryptography": "^3.2.0",
+    "ethers": "^6.17.0",
+    "solc": "^0.8.24"
+  }
+}

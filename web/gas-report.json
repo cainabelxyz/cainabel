@@ -1,0 +1,29 @@
+{
+  "generated": "2026-09-14T05:29:16.938Z",
+  "deploy": {
+    "gateTable": 1167721,
+    "token": 343379,
+    "field": 1655277,
+    "fieldRuntimeBytes": 7461
+  },
+  "createMatch": 192512,
+  "batches": [
+    {
+      "rounds": 1,
+      "gas": 457246,
+      "perRound": 457246
+    },
+    {
+      "rounds": 8,
+      "gas": 2440322,
+      "perRound": 305040
+    },
+    {
+      "rounds": 14,
+      "gas": 4160154,
+      "perRound": 297154
+    }
+  ],
+  "perRoundAtBatch64": null,
+  "note": "measured in a real EVM against the compiled contracts, 21000 intrinsic and calldata included"
+}

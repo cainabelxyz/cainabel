@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAIN &amp; ABEL · the workbench</title>
+<meta name="description" content="Write a warrior, fight it on the real gates in your tab, then field it on-chain. Free, no wallet, until the moment you choose otherwise.">
+<meta property="og:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta property="og:url" content="https://cainabel.xyz/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cainabel.xyz/assets/og.jpg">
+<meta name="twitter:site" content="@cainabelxyz">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <svg class="brand-mark" viewBox="0 0 32 32"><rect width="15" height="32" fill="#e0443e"/><rect x="17" width="15" height="32" fill="#4e9be0"/></svg>
+    CAIN &amp; ABEL
+  </a>
+  <nav>
+    <a href="field.html#field">The Field</a>
+    <a href="field.html#isa">Instruction set</a>
+    <a href="#deploy">Field it on-chain</a>
+  </nav>
+  <div class="spacer"></div>
+  <a class="btn" href="field.html">← The Field</a>
+</header>
+
+<main>
+<section style="border-bottom:none;padding-top:56px">
+  <div class="wrap">
+    <div class="kicker">THE WORKBENCH · FREE · NO WALLET UNTIL YOU SAY SO</div>
+    <h2>Write a warrior. Fight it on the real gates.</h2>
+    <p class="lead">
+      Both editors assemble against the same gate table the contract walks, and
+      the practice field below runs the same two 1,277-gate dies as the chain.
+      A program that survives here is the program you field. CAIN loads at
+      word 0, ABEL at word 128 — use <span class="mono">enemy</span> and
+      <span class="mono">base</span> to fight from either side.
+    </p>
+
+    <div class="bench">
+      <div class="editor cainside">
+        <div class="ehead">
+          <span class="cain">CAIN · LOADS AT WORD 0</span>
+          <span>
+            <select id="sample-cain"></select>
+            <button class="btn" style="padding:5px 10px" id="asm-cain">Assemble</button>
+          </span>
+        </div>
+        <textarea id="src-cain" spellcheck="false"></textarea>
+        <div class="estatus" id="st-cain">—</div>
+      </div>
+      <div class="editor abelside">
+        <div class="ehead">
+          <span class="abel">ABEL · LOADS AT WORD 128</span>
+          <span>
+            <select id="sample-abel"></select>
+            <button class="btn" style="padding:5px 10px" id="asm-abel">Assemble</button>
+          </span>
+        </div>
+        <textarea id="src-abel" spellcheck="false"></textarea>
+        <div class="estatus" id="st-abel">—</div>
+      </div>
+    </div>
+
+    <div class="fieldbox benchfield">
+      <div class="head">
+        <span>THE PRACTICE FIELD · SAME GATES AS THE CHAIN</span>
+        <span class="live">LIVE SILICON</span>
+      </div>
+      <div class="diegrid">
+        <div class="die" id="die-cain">
+          <canvas id="cv-cain" width="128" height="128"></canvas>
+          <div class="name cain">CAIN</div>
+          <div class="meta" id="meta-cain">—</div>
+          <div class="regs" id="regs-cain"></div>
+          <div class="corestat" id="cs-cain"></div>
+        </div>
+        <div class="battlefield">
+          <canvas id="cv-field" width="160" height="160"></canvas>
+          <div class="cap">THE FIELD · 256 WORDS</div>
+        </div>
+        <div class="die" id="die-abel">
+          <canvas id="cv-abel" width="128" height="128"></canvas>
+          <div class="name abel">ABEL</div>
+          <div class="meta" id="meta-abel">—</div>
+          <div class="regs" id="regs-abel"></div>
+          <div class="corestat" id="cs-abel"></div>
+        </div>
+      </div>
+      <div class="fieldctl">
+        <button id="btn-fight">Fight</button>
+        <button id="btn-pause">Pause</button>
+        <button id="btn-step">Step round</button>
+        <select id="speed">
+          <option value="2">2 rounds/s</option>
+          <option value="8" selected>8 rounds/s</option>
+          <option value="30">30 rounds/s</option>
+          <option value="120">120 rounds/s</option>
+        </select>
+        <label style="color:var(--faint)">byte→CAIN <input id="byte-cain" class="mono" type="number" min="0" max="255" value="66" style="width:56px;background:var(--bg2);color:var(--text);border:1px solid var(--line2);border-radius:3px;padding:4px"></label>
+        <label style="color:var(--faint)">byte→ABEL <input id="byte-abel" class="mono" type="number" min="0" max="255" value="66" style="width:56px;background:var(--bg2);color:var(--text);border:1px solid var(--line2);border-radius:3px;padding:4px"></label>
+        <span class="verdict" id="verdict">ASSEMBLE BOTH, THEN FIGHT</span>
+      </div>
+    </div>
+
+    <div class="deploybox" id="deploy">
+      <h3>FIELD IT ON-CHAIN</h3>
+      <p class="note" id="deploy-note">
+        The field contract opens at <b class="gold">T-0 · SEP 16 · 16:00 UTC</b> on Robinhood Chain.
+        The calldata below is your match, ready — <span class="mono">createMatch(red, blue)</span>,
+        built from the two programs above, byte for byte what you would sign.
+      </p>
+      <div class="cal mono" id="calldata">assemble both warriors to build the call</div>
+      <div class="cta" style="display:flex;gap:12px;margin-top:16px">
+        <button class="btn primary" id="btn-connect">Connect wallet</button>
+        <button class="btn" id="btn-send" disabled>createMatch()</button>
+        <button class="btn" id="btn-copy-cal">Copy calldata</button>
+      </div>
+      <p class="note">Creating a match writes both programs into the field and opens step() to
+      anybody. There is no fee to us anywhere in it — you pay the chain, and the chain pays attention.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footline">
+    <span>THE WORKBENCH TOUCHES NO CHAIN UNTIL THE BUTTON THAT SAYS SO</span>
+    <span>CA-8 · 2 × 1,277 NAND</span>
+  </div>
+</footer>
+
+<script type="module" src="workbench.js"></script>
+</body>
+</html>
