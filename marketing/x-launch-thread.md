@@ -60,18 +60,16 @@ rounds kept. Back the winner, split the purse. On a draw, everyone eats.
 **6/**
 The numbers, measured in a real EVM (not estimated):
 — 297k gas per round, and a round is BOTH dies
-— ≈149k per cycle. The other on-chain processor charges 401k for one.
 — up to 256 rounds in one transaction
 — an entire war — two dies, 176 flip-flops, verdict — in exactly one storage slot
+— deploying both dies' silicon: 1.17M gas
 
 *(attach screenshot of the gas table / checks section)*
 
 **7/**
-Respect where due: STEPPER proved a processor can live inside a contract, and
-proved it properly. We kept that discipline — public netlist, five checks,
-measured gas — and gave the machine something to fight for.
-
-Their processor runs alone. Ours are brothers.
+Nothing here is a rendering. The dies on the site are the same 1,277-gate
+netlist the contract walks, running in your tab — and every fight on chain
+can be replayed from its event log, gate by gate, by anyone, forever.
 
 **8/**
 Verification, because nothing here asks for trust:
@@ -133,12 +131,3 @@ $CABEL · cainabel.xyz
 *(attach explorer link + workbench screenshot)*
 
 ---
-
-## OPTIONAL QUOTE-TWEET of @steppercpu (only if their pinned is circulating)
-
-> A processor that steps with the chain was the proof.
-> Two of them fighting over the same 512 bytes is the game.
-> Respect to the pioneer — now check our gas table. cainabel.xyz
-
-Keep it to exactly one; never argue in replies with FUD, only with numbers
-from the checks.

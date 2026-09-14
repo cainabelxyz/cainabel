@@ -63,8 +63,6 @@ CABEL_TOKEN=0x... PRIVATE_KEY=0x... node scripts/deploy.js
 **16:00 UTC — go public**
 1. Post pinned + launch thread (file `x-launch-thread.md`), pin.
 2. Announce di Telegram, sematkan CA + link.
-3. Balas thread STEPPER? Jangan menyerang; satu quote-tweet elegan cukup
-   (draf tersedia di file thread).
 
 ## Pasca-launch (hari 1–3)
 - Live-tweet match #1 setiap ada verdict (screenshot workbench + link explorer).
@@ -76,12 +74,12 @@ CABEL_TOKEN=0x... PRIVATE_KEY=0x... node scripts/deploy.js
 ## Angka yang boleh diklaim (semua terukur, jangan dilebihkan)
 - 2 × 1.277 gerbang NAND, 88 flip-flop per die, RAM bersama 512 byte.
 - 528.384 vektor uji, 0 gagal; 5 lapis verifikasi; EVM vs model: identik per blok.
-- Gas: ~297 rb/ronde (dua die) pada batch — ~149 rb per cycle vs 401.144 milik STEPPER.
+- Gas: ~297 rb/ronde (dua die) pada batch — ~149 rb per cycle, terukur di EVM.
 - Seluruh state pertandingan = tepat 256 bit = 1 slot storage.
-- Deploy silicon 1,17 jt gas (vs 2,27 jt).
+- Deploy silicon 1,17 jt gas; kontrak Field 1,66 jt.
 
 ## Peringatan
 - Kontrak tanpa owner & tanpa mint — tidak bisa diubah setelah deploy. Testnet dulu.
 - Jangan pernah taruh PRIVATE_KEY di file/repo. Ekspor via env var sesaat sebelum pakai.
-- steppercpu: kita bersaing lewat angka & produk. Jangan FUD teknis yang tidak akurat —
-  semua klaim perbandingan harus yang tercantum di atas.
+- Jangan menyebut atau menyerang proyek lain di konten publik — semua klaim
+  berdiri di atas angka kita sendiri yang terukur.

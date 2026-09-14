@@ -66,8 +66,7 @@ try {
   $('s-gas').textContent = `${Math.round(best.perRound / 1000)}k`;
   $('tk-gas').textContent = `${fmt(best.perRound)} · measured`;
   const cyc = Math.round(best.perRound / 2);
-  $('tk-cycle').textContent = `≈${fmt(cyc)} vs their 401,144`;
-  $('vs-gas').textContent = `≈${fmt(cyc)} — ${(401144 / cyc).toFixed(1)}× less`;
+  $('tk-cycle').textContent = `≈${fmt(cyc)} · measured`;
 } catch { /* keep static fallbacks */ }
 
 let report = null;

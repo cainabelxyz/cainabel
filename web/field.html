@@ -131,10 +131,10 @@
 <section id="why">
   <div class="wrap">
     <div class="kicker">§ 01 · THE PREMISE</div>
-    <h2>Their processor runs alone.<br>Ours are brothers.</h2>
+    <h2>A processor alone proves a point.<br>Two of them settle one.</h2>
     <p class="lead">
-      An on-chain processor that computes in private is a proof of concept. Two
-      of them sharing one memory is a <b>game</b> — the 1984 game, Core War,
+      A processor on a chain is a proof of concept. Two of them sharing one
+      memory is a <b>game</b> — the 1984 game, Core War,
       the one that taught a generation what a program fighting for its life
       looks like. We rebuilt it at the gate level, put both dies inside a
       contract, and opened the clock to anybody with gas.
@@ -172,39 +172,10 @@
   </div>
 </section>
 
-<!-- ======================= VS ======================= -->
-<section id="vs">
-  <div class="wrap">
-    <div class="kicker">§ 02 · THE OTHER PROCESSOR</div>
-    <h2>Respect to the pioneer. Now the numbers.</h2>
-    <p class="lead">
-      STEPPER put a real processor inside a contract and proved every claim it
-      made. We kept the discipline — netlist public, checks published, gas
-      measured in a real EVM — and changed what the machine is <b>for</b>.
-    </p>
-    <div class="vs tablewrap">
-      <table>
-        <tr><th></th><th>STEPPER ST-8</th><th>CAIN &amp; ABEL CA-8 × 2</th></tr>
-        <tr><td>Dies per contract</td><td class="them">1, alone</td><td class="us win">2, at war</td></tr>
-        <tr><td>NAND gates walked</td><td class="them">2,161</td><td class="us">2,554 per round (both dies)</td></tr>
-        <tr><td>Gas per cycle, measured</td><td class="them">401,144</td><td class="us win" id="vs-gas">≈148,600 — 2.7× less</td></tr>
-        <tr><td>Cycles per transaction</td><td class="them">1</td><td class="us win">up to 512 (256 rounds × 2 dies)</td></tr>
-        <tr><td>The program lives in</td><td class="them">ROM, immutable, safe</td><td class="us">shared RAM, hostile, overwritable</td></tr>
-        <tr><td>A step buys</td><td class="them">emission</td><td class="us win">emission + a side + a share of the offering</td></tr>
-        <tr><td>Machine state per slot</td><td class="them">one die, 167 bits</td><td class="us win">the whole war — both dies, 256 bits exactly</td></tr>
-        <tr><td>When nobody steps</td><td class="them">the machine stands still</td><td class="us">the fight stands still — and the offering waits</td></tr>
-      </table>
-    </div>
-    <p class="note">Their numbers are quoted from steppercpu.tech as published. Ours come from
-    <span class="mono">npm run evm</span>, which deploys our compiled contracts into a real EVM and
-    fights a full match through them — the report this page loads is the file that run wrote.</p>
-  </div>
-</section>
-
 <!-- ======================= HOW ======================= -->
 <section id="how">
   <div class="wrap">
-    <div class="kicker">§ 03 · A MATCH, START TO VERDICT</div>
+    <div class="kicker">§ 02 · A MATCH, START TO VERDICT</div>
     <h2>Four calls. No permission.</h2>
     <div class="cards">
       <div class="card">
@@ -242,7 +213,7 @@
 <!-- ======================= WARRIORS ======================= -->
 <section id="warriors">
   <div class="wrap">
-    <div class="kicker">§ 04 · THE HOUSE WARRIORS</div>
+    <div class="kicker">§ 03 · THE HOUSE WARRIORS</div>
     <h2>Three openings. Then it's yours.</h2>
     <p class="lead">
       These ship with the field and run in the demo above — assembled by the
@@ -258,7 +229,7 @@
 <!-- ======================= ISA ======================= -->
 <section id="isa">
   <div class="wrap">
-    <div class="kicker">§ 05 · INSTRUCTION SET</div>
+    <div class="kicker">§ 04 · INSTRUCTION SET</div>
     <h2>Sixteen opcodes. One of them is death.</h2>
     <p class="lead">
       Four bits of opcode, so sixteen is arithmetic, not aesthetics. 16-bit
@@ -282,7 +253,7 @@
 <!-- ======================= CHECKS ======================= -->
 <section id="checks">
   <div class="wrap">
-    <div class="kicker">§ 06 · VERIFICATION</div>
+    <div class="kicker">§ 05 · VERIFICATION</div>
     <h2>Five checks, and none of them is the same check twice.</h2>
     <p class="lead">
       The build refuses to write a netlist unless every check passes —
@@ -297,7 +268,7 @@
 <!-- ======================= TOKEN ======================= -->
 <section id="token">
   <div class="wrap">
-    <div class="kicker">§ 07 · $CABEL</div>
+    <div class="kicker">§ 06 · $CABEL</div>
     <h2>The token is the clock. The clock is the fight.</h2>
     <p class="lead">
       Fixed at one billion, minted whole at birth, no mint function anywhere —
@@ -325,7 +296,7 @@
         <div class="row"><dt>Keeper's wage</dt><dd>fixed $CABEL per round, immutable</dd></div>
         <div class="row"><dt>The offering</dt><dd>fixed accrual per round → winners</dd></div>
         <div class="row"><dt>Gas, one round (both dies)</dt><dd id="tk-gas">297,154 · measured</dd></div>
-        <div class="row"><dt>Gas per cycle at batch</dt><dd id="tk-cycle">≈148,600 vs their 401,144</dd></div>
+        <div class="row"><dt>Gas per cycle at batch</dt><dd id="tk-cycle">≈148,600 · measured</dd></div>
         <div class="row"><dt>Who can step</dt><dd>anybody</dd></div>
         <div class="row"><dt>Who can be excluded</dt><dd>nobody</dd></div>
         <div class="row"><dt>Launch</dt><dd class="gold">SEP 16 · 16:00 UTC</dd></div>
