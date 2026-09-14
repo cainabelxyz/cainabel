@@ -33,7 +33,7 @@ export const CONFIG = {
   links: {
     x: 'https://x.com/cainabelxyz',
     telegram: 'https://t.me/cainabelxyz',
-    github: 'https://github.com/',              // update with the public repo
+    github: 'https://github.com/cainabelxyz/cainabel',
     trade: '',                                  // pons pair URL once live
   },
 };
