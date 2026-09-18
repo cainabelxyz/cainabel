@@ -4,7 +4,7 @@
 window.CFG = {
   // the $CABEL contract address. '' shows SOON on the site; the BUY link
   // works either way (it points at Argus).
-  CA: '',
+  CA: '0xf742BC0821EaC50f3c474E22F46Bf63CB8bb8c10',
   BUY: 'https://argus.world/token/',
 
   launchAtUTC: '2026-09-18T17:30:00Z',
@@ -26,7 +26,7 @@ window.CFG = {
   // deployed addresses — scripts/deploy.js fills these in
   addresses: {
     netlist: '',
-    token: '',
+    token: '0xf742BC0821EaC50f3c474E22F46Bf63CB8bb8c10',
     field: '',
   },
 
