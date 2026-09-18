@@ -59,7 +59,7 @@
 <body>
 <div class="card" id="card">
   <div class="gridbg"></div>
-  <div class="brand">CAIN <b>&amp;</b> ABEL · $CABEL</div>
+  <div class="brand">CAINABEL · $CABEL</div>
   <div class="center" id="content"></div>
   <div class="site" id="siteline">CAINABEL.XYZ</div>
 </div>
@@ -70,13 +70,13 @@ const CD = {
   h24: ['24', 'HOURS', 'TWO DIES · ONE RAM · NO OWNER · <span class="gold">ONE SURVIVOR</span>'],
   h12: ['12', 'HOURS', '1,277 NAND GATES PER DIE · BUILT FROM ONE PRIMITIVE'],
   h6:  ['06', 'HOURS', '528,384 TEST VECTORS · <span style="color:var(--ok)">ZERO FAILURES</span>'],
-  h1:  ['01', 'HOUR', 'NO PRESALE · NO ALLOWLIST · <span class="gold">WHOEVER PAYS, KEEPS</span>'],
+  h1:  ['01', 'HOUR', 'CA POSTED ON X + TELEGRAM FIRST · <span class="gold">ANYTHING EARLIER IS FAKE</span>'],
 };
 if (CD[c]) {
   const [n, u, sub] = CD[c];
   el.innerHTML = `<div class="huge redblue">${n}<small>${u}</small></div>
     <div class="sub">${sub}</div>
-    <div class="sub gold" style="margin-top:18px">THE FIELD OPENS · SEP 16 · 16:00 UTC</div>`;
+    <div class="sub gold" style="margin-top:18px">THE FIELD OPENS ON ARC · SEP 18 · 17:30 UTC</div>`;
 } else if (c === 'spec') {
   el.innerHTML = `<div class="title">CA-8 · READ FROM THE NETLIST</div>
   <div class="rows">
@@ -85,7 +85,7 @@ if (CD[c]) {
     <div class="row"><span class="k">The field</span><span class="v">256 words × 16 bit, shared, hostile</span></div>
     <div class="row"><span class="k">Instruction set</span><span class="v">16 opcodes · one of them is death</span></div>
     <div class="row"><span class="k">Whole match state</span><span class="v">256 bits — one storage slot exactly</span></div>
-    <div class="row"><span class="k">Network</span><span class="v">Robinhood Chain · 4663</span></div>
+    <div class="row"><span class="k">Network</span><span class="v">Arc · 5042 · gas paid in USDC</span></div>
   </div>`;
 } else if (c === 'checks') {
   el.innerHTML = `<div class="title">FIVE CHECKS · OR NO NETLIST SHIPS</div>
@@ -103,12 +103,48 @@ if (CD[c]) {
   <div class="sub" style="margin-top:40px">AND A ROUND IS <span style="color:var(--cain)">BOTH</span> <span style="color:var(--abel)">DIES</span> — EVERY GATE, WALKED</div>
   <div class="sub">UP TO 256 ROUNDS IN ONE TRANSACTION</div>`;
 } else if (c === 'endcard') {
-  document.querySelector('.gridbg').style.cssText = "position:absolute;inset:0;background:url('assets/og.jpg') center/cover;filter:brightness(.5)";
+  document.querySelector('.gridbg').style.cssText = "position:absolute;inset:0;background:url('assets/og-arc.jpg') center/cover;opacity:1";
   document.querySelector('.brand').style.display = 'none';
   document.getElementById('siteline').style.display = 'none';
-  el.innerHTML = `<div style="height:340px"></div>
-    <div class="sub" style="font-size:44px;letter-spacing:.18em;color:var(--text)">TWO BROTHERS. ONE FIELD. ONE SURVIVOR.</div>
-    <div class="sub gold" style="font-size:34px;margin-top:26px">$CABEL · SEP 16 · 16:00 UTC · CAINABEL.XYZ</div>`;
+  el.innerHTML = `<div style="height:560px"></div>
+    <div class="sub" style="font-size:46px;letter-spacing:.2em;color:var(--text)">THE FIELD MOVES TO ARC</div>
+    <div class="sub gold" style="font-size:32px;margin-top:22px">SEP 18 · 17:30 UTC · ARGUS.WORLD · CAINABEL.XYZ</div>`;
+} else if (c === 'split' || c === 'brief') {
+  // two brothers either side, the news between them
+  document.querySelector('.gridbg').style.cssText =
+    "position:absolute;inset:0;opacity:1;background:linear-gradient(90deg,rgba(11,12,14,.25),rgba(11,12,14,.93) 32%,rgba(11,12,14,.93) 68%,rgba(11,12,14,.25)),url('assets/cain.jpg') left 22% / 38% auto no-repeat,url('assets/abel.jpg') right 22% / 38% auto no-repeat,#0b0c0e";
+  el.innerHTML = c === 'split'
+    ? `<div class="title">ANNOUNCEMENT</div>
+       <div style="font-family:var(--mono);font-size:92px;line-height:1.08;font-weight:500">THE FIELD<br>MOVES TO <span style="color:var(--abel)">ARC</span></div>
+       <div class="sub" style="margin-top:40px">GAS IN USDC · A ROUND OF WAR COSTS <span class="gold">LESS THAN A CENT</span></div>
+       <div class="sub gold" style="margin-top:18px">TODAY · SEP 18 · 17:30 UTC · 1:30 PM ET · ARGUS.WORLD</div>`
+    : `<div class="title" style="color:var(--cain)">T-1 HOUR · LAUNCH BRIEF</div>
+       <div class="rows" style="min-width:860px;text-align:left">
+         <div class="row"><span class="k">When</span><span class="v">17:30 UTC · 1:30 PM ET</span></div>
+         <div class="row"><span class="k">Where</span><span class="v">argus.world</span></div>
+         <div class="row"><span class="k">Chain</span><span class="v">Arc · 5042 · gas in USDC</span></div>
+         <div class="row"><span class="k">The CA</span><span class="v ok">here + x.com/cainabelxyz, pinned</span></div>
+         <div class="row"><span class="k">Anything earlier</span><span class="v" style="color:var(--cain)">fake</span></div>
+       </div>`;
+} else if (c === 'usdc') {
+  el.innerHTML = `<div class="title">WHAT THE WAR COSTS ON ARC · PAID IN USDC</div>
+  <div class="big2">$0.006 <span class="unit">/ ROUND</span></div>
+  <div class="rows" style="margin-top:40px">
+    <div class="row"><span class="k">One round — both dies, every gate</span><span class="v">≈ $0.006</span></div>
+    <div class="row"><span class="k">A single-round step</span><span class="v">≈ $0.009</span></div>
+    <div class="row"><span class="k">Fielding a match</span><span class="v">≈ $0.004</span></div>
+    <div class="row"><span class="k">Deploying all the silicon</span><span class="v">≈ $0.06</span></div>
+  </div>
+  <div class="sub" style="margin-top:28px;font-size:20px">MEASURED GAS × ARC'S GAS PRICE TODAY (~20 GWEI)</div>`;
+} else if (c === 'how') {
+  el.innerHTML = `<div class="title">HOW A MATCH WORKS · FOUR CALLS</div>
+  <div class="rows">
+    <div class="row"><span class="k"><span class="v">1 · createMatch()</span></span><span class="v">anyone fields two warriors</span></div>
+    <div class="row"><span class="k"><span class="v">2 · step()</span></span><span class="v">pick a brother, pay the rounds</span></div>
+    <div class="row"><span class="k"><span class="v" style="color:var(--cain)">3 · DAT</span></span><span class="v">a core falls — verdict on-chain</span></div>
+    <div class="row"><span class="k"><span class="v ok">4 · claimPot()</span></span><span class="v">the survivor's keepers split it</span></div>
+  </div>
+  <div class="sub" style="margin-top:36px">EVERY KEPT ROUND PAYS A $CABEL WAGE · <span class="gold">SAME TX</span></div>`;
 } else if (c === 'isa') {
   el.innerHTML = `<div class="title">16 OPCODES · ONE OF THEM IS DEATH</div>
   <div class="ops">
