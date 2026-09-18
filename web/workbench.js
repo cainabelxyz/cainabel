@@ -227,7 +227,7 @@ $('btn-connect').onclick = async () => {
           chainId: '0x' + CONFIG.chain.id.toString(16),
           chainName: CONFIG.chain.name,
           rpcUrls: [CONFIG.chain.rpc],
-          nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+          nativeCurrency: CONFIG.chain.currency,
           blockExplorerUrls: [CONFIG.chain.explorer],
         }],
       });

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CAIN &amp; ABEL · two brothers, one field, one survivor</title>
+<title>CAINABEL · the field</title>
 <meta name="description" content="Two real 8-bit processors, built gate by gate from NAND alone, fight to the death in 512 bytes of shared RAM inside a contract. The oldest fight in the book, executed on-chain and checkable by anyone.">
-<meta property="og:title" content="CAIN & ABEL — the field">
-<meta property="og:description" content="Two gate-level processors fight in shared memory, on-chain. Whoever pays for a round is his brother's keeper.">
+<meta property="og:title" content="CAINABEL · the field">
+<meta property="og:description" content="Two gate-level processors fight in shared memory, on Arc. Whoever pays for a round is his brother's keeper.">
 <meta property="og:image" content="https://cainabel.xyz/assets/og.jpg">
 <meta property="og:url" content="https://cainabel.xyz/">
 <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
   <code id="ca" class="js-ca">SOON</code>
   <button id="ca-copy">Copy</button>
   <a id="ca-explorer" hidden href="#" target="_blank" rel="noopener">Explorer</a>
-  <a id="link-trade" class="trade js-buy" href="https://www.ponsfamily.com/launchpad/" target="_blank" rel="noopener">Buy $CABEL →</a>
+  <a id="link-trade" class="trade js-buy" href="https://argus.world" target="_blank" rel="noopener">Buy $CABEL →</a>
 </div>
 
 <main id="top">
@@ -123,6 +123,7 @@
       <div class="stat"><div class="k">Whole match state</div><div class="v">1 slot</div></div>
       <div class="stat"><div class="k">Gas per round, measured</div><div class="v" id="s-gas">297k</div></div>
       <div class="stat"><div class="k">Rounds per tx</div><div class="v">up to 256</div></div>
+      <div class="stat"><div class="k">One round on Arc</div><div class="v" id="s-usd">≈ $0.006</div></div>
     </div>
   </div>
 </div>
@@ -271,9 +272,10 @@
     <div class="kicker">§ 06 · $CABEL</div>
     <h2>The token is the clock. The clock is the fight.</h2>
     <p class="lead">
-      Fixed at one billion, minted whole at birth, no mint function anywhere —
-      not for us, not for anyone. The mining reserve leaves one kept round at
-      a time, to whoever paid for it, plus the offering the survivors split.
+      $CABEL launches on Argus. The Field mints nothing: its reserve is sent
+      to the contract in the open, where anyone can read it, and it leaves one
+      kept round at a time — to whoever paid for it — plus the offering the
+      survivors split.
     </p>
     <div class="tok">
       <div class="speclist">
@@ -284,22 +286,23 @@
         <div class="row"><dt>The field</dt><dd>256 words × 16 bit, shared</dd></div>
         <div class="row"><dt>Match state</dt><dd>256 bits — one slot exactly</dd></div>
         <div class="row"><dt>Clock</dt><dd>1 round per step, ≤256 per tx</dd></div>
-        <div class="row"><dt>Network</dt><dd>Robinhood Chain · 4663</dd></div>
+        <div class="row"><dt>Network</dt><dd>Arc · 5042 · gas paid in USDC</dd></div>
         <div class="row"><dt>Gate table</dt><dd id="sp-netlist">deploys at T-0</dd></div>
         <div class="row"><dt>The field contract</dt><dd id="sp-field">deploys at T-0</dd></div>
         <div class="row"><dt>Token</dt><dd id="sp-token">deploys at T-0</dd></div>
       </div>
       <div class="speclist">
         <div class="sphead">WHAT A KEPT ROUND PAYS · MEASURED, NOT FORECAST</div>
-        <div class="row"><dt>Supply, fixed at birth</dt><dd>1,000,000,000 $CABEL</dd></div>
-        <div class="row"><dt>Mining reserve</dt><dd>40% · leaves per round only</dd></div>
+        <div class="row"><dt>Token</dt><dd>$CABEL · launched on Argus</dd></div>
+        <div class="row"><dt>Field reserve</dt><dd>sent on-chain · leaves per round only</dd></div>
         <div class="row"><dt>Keeper's wage</dt><dd>fixed $CABEL per round, immutable</dd></div>
         <div class="row"><dt>The offering</dt><dd>fixed accrual per round → winners</dd></div>
         <div class="row"><dt>Gas, one round (both dies)</dt><dd id="tk-gas">297,154 · measured</dd></div>
         <div class="row"><dt>Gas per cycle at batch</dt><dd id="tk-cycle">≈148,600 · measured</dd></div>
+        <div class="row"><dt>Cost, one round on Arc</dt><dd id="tk-usd">≈ $0.006 in USDC</dd></div>
         <div class="row"><dt>Who can step</dt><dd>anybody</dd></div>
         <div class="row"><dt>Who can be excluded</dt><dd>nobody</dd></div>
-        <div class="row"><dt>Launch</dt><dd class="gold">SEP 16 · 16:00 UTC</dd></div>
+        <div class="row"><dt>Launch</dt><dd class="gold">SEP 18 · 17:30 UTC · ARGUS</dd></div>
       </div>
     </div>
     <p class="note">Emission is arithmetic; gas is measured. Neither is a forecast. The

@@ -27,8 +27,8 @@ if (CA) {
   const ex = $('ca-explorer');
   if (ex) { ex.hidden = false; ex.href = `${CONFIG.chain.explorer}/token/${CA}`; }
 }
-if (CONFIG.PONS) {
-  document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.PONS + CA; });
+if (CONFIG.BUY && CA) {
+  document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.BUY + CA; });
 }
 if ($('ca-copy')) $('ca-copy').onclick = () => navigator.clipboard.writeText(CA || $('ca').textContent);
 if (CA) {
@@ -73,6 +73,22 @@ try {
   $('tk-gas').textContent = `${fmt(best.perRound)} · measured`;
   const cyc = Math.round(best.perRound / 2);
   $('tk-cycle').textContent = `≈${fmt(cyc)} · measured`;
+  // what that round costs right now, in USDC, from Arc's live gas price.
+  // Not awaited: the field must never wait on the network.
+  if (CONFIG.chain?.rpc) {
+    fetch(CONFIG.chain.rpc, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }),
+    })
+      .then((x) => x.json())
+      .then((r) => {
+        const usd = (best.perRound * Number(BigInt(r.result))) / 1e18;
+        $('s-usd').textContent = `$${usd.toFixed(4)}`;
+        $('tk-usd').textContent = `$${usd.toFixed(4)} in USDC · live gas`;
+      })
+      .catch(() => {});
+  }
 } catch { /* keep static fallbacks */ }
 
 let report = null;

@@ -1,10 +1,10 @@
-# CAIN & ABEL · $CABEL
+# CAINABEL · $CABEL
 
 **Two brothers. One field. One survivor.**
 
 Two real 8-bit processors — 1,277 NAND gates each, composed from a single
 logic primitive and nothing else — fight to the death in 512 bytes of shared
-RAM inside a contract on Robinhood Chain. The contract does not emulate them:
+RAM inside a contract on Arc. The contract does not emulate them:
 it walks every gate of both dies, round after round. Whoever pays for a round
 is his brother's keeper, and the byte they send is what their champion reads.
 
@@ -38,13 +38,15 @@ The build **refuses to emit a netlist unless every check passes**:
 | 05 | the compiled contracts in a real EVM, compared per block, gas measured | full match |
 
 Gas, measured (not estimated): **~297k per round at batch — and a round is
-both dies**. Deploying the silicon costs 1.17M gas.
+both dies**. Deploying the silicon costs 1.17M gas. On Arc, gas is paid in
+USDC: at ~20 gwei a round costs about $0.006, and deploying everything about
+$0.06.
 
 ## Layout
 
 ```
 silicon/    the placer, optimiser, CA-8 description, simulator, model, assembler
-contracts/  Field.sol (the arena), CainToken.sol (test token; $CABEL lives on pons)
+contracts/  Field.sol (the arena), CainToken.sol (test token; $CABEL launches on Argus)
 scripts/    blob.js (gate table encoding) · evm-check.js (check 05) · deploy.js
 web/        the static site — the same modules, running the same netlist
 marketing/  runbook and launch copy

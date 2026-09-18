@@ -3,23 +3,24 @@
 // fresh: no ?v bump, no cache purge needed for a CA swap.
 window.CFG = {
   // the $CABEL contract address. '' shows SOON on the site; the BUY link
-  // works either way (it points at the pons launchpad page).
+  // works either way (it points at Argus).
   CA: '',
-  PONS: 'https://www.ponsfamily.com/launchpad/',
+  BUY: 'https://argus.world/token/',
 
-  launchAtUTC: '2026-09-16T16:00:00Z',
+  launchAtUTC: '2026-09-18T17:30:00Z',
 
   chain: {
-    name: 'Robinhood Chain',
-    id: 4663,
-    rpc: 'https://rpc.mainnet.chain.robinhood.com',
-    explorer: 'https://robinhoodchain.blockscout.com',
+    name: 'Arc',
+    id: 5042,
+    rpc: 'https://rpc.mainnet.arc.io',
+    explorer: 'https://arcexplorer.org',
+    // Arc pays gas in USDC; natively it carries 18 decimals
+    currency: { name: 'USDC', symbol: 'USDC', decimals: 18 },
   },
   testnet: {
-    name: 'Robinhood Chain Testnet',
-    id: 46630,
-    rpc: '',
-    explorer: '',
+    name: 'Arc Testnet',
+    id: 5042002,
+    rpc: 'https://rpc.testnet.arc.network',
   },
 
   // deployed addresses — scripts/deploy.js fills these in
@@ -30,9 +31,8 @@ window.CFG = {
   },
 
   token: {
-    name: 'CAIN & ABEL',
+    name: 'CAINABEL',
     symbol: 'CABEL',
-    supply: '1,000,000,000',
   },
 
   links: {

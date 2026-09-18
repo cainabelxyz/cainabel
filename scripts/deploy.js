@@ -1,4 +1,4 @@
-// Deploy CAIN & ABEL to Robinhood Chain (or its testnet).
+// Deploy CAINABEL to Arc (or Arc testnet). Gas is paid in USDC.
 //
 //   PRIVATE_KEY=0x... node scripts/deploy.js [--testnet] [--with-test-token]
 //
@@ -7,10 +7,10 @@
 //   2. Field       (needs the gate table + the $CABEL token address)
 //   3. writes both addresses into web/config.js
 //
-// The $CABEL token itself launches on pons (via the CABEL Launcher) — pass its
+// The $CABEL token itself launches on Argus (argus.world) — pass its
 // address as CABEL_TOKEN=0x... . For a testnet rehearsal, --with-test-token
 // deploys the plain CainToken ERC20 instead, so the whole loop can be walked
-// at a fortieth of the price before T-0.
+// before T-0.
 //
 // Emission parameters are IMMUTABLE once deployed — set them deliberately:
 //   EMISSION_PER_ROUND  $CABEL paid to the keeper per round   (default 10)
@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createRequire } from 'node:module';
-import { JsonRpcProvider, Wallet, ContractFactory, parseUnits } from 'ethers';
+import { JsonRpcProvider, Wallet, ContractFactory, parseUnits, formatUnits } from 'ethers';
 import { buildBlob, dataContractCreationCode } from './blob.js';
 
 const require = createRequire(import.meta.url);
@@ -32,7 +32,7 @@ const root = join(here, '..');
 const TESTNET = process.argv.includes('--testnet');
 const WITH_TEST_TOKEN = process.argv.includes('--with-test-token');
 const RPC = process.env.RPC_URL
-  ?? (TESTNET ? 'https://rpc.testnet.chain.robinhood.com' : 'https://rpc.mainnet.chain.robinhood.com');
+  ?? (TESTNET ? 'https://rpc.testnet.arc.network' : 'https://rpc.mainnet.arc.io');
 
 const pk = process.env.PRIVATE_KEY;
 if (!pk) {
@@ -48,7 +48,7 @@ const wallet = new Wallet(pk, provider);
 const net = await provider.getNetwork();
 console.log(`deployer ${wallet.address}`);
 console.log(`chain    ${net.chainId} via ${RPC}`);
-console.log(`balance  ${(await provider.getBalance(wallet.address))} wei`);
+console.log(`balance  ${formatUnits(await provider.getBalance(wallet.address), 18)} USDC (gas)`);
 console.log(`emission ${EMISSION} /round · offering ${POT} /round (immutable — check twice)`);
 
 // ---- compile ----
@@ -88,7 +88,7 @@ if (WITH_TEST_TOKEN) {
   tokenAddr = await c.getAddress();
   console.log(`      CainToken at ${tokenAddr}`);
 } else if (!tokenAddr) {
-  console.error('\nCABEL_TOKEN is required (the pons launch address), or pass --with-test-token.');
+  console.error('\nCABEL_TOKEN is required (the Argus launch address), or pass --with-test-token.');
   console.error('The gate table above IS deployed and can be reused: set NETLIST=' + netlistAddr);
   process.exit(1);
 }

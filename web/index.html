@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CAIN &amp; ABEL · $CABEL · two brothers, one field, one survivor</title>
-<meta name="description" content="Two real 8-bit processors fight to the death in shared memory, inside a contract on Robinhood Chain. Pick a brother. Keep his clock. Split the offering.">
-<meta property="og:title" content="CAIN & ABEL · $CABEL">
-<meta property="og:description" content="The oldest fight in the book, executed gate by gate, on-chain. T-0 · Sep 16 · 16:00 UTC.">
+<title>CAINABEL · $CABEL · two brothers, one field, one survivor</title>
+<meta name="description" content="Two real 8-bit processors fight to the death in shared memory, inside a contract on Arc. Pick a brother. Keep his clock. Split the offering.">
+<meta property="og:title" content="CAINABEL · $CABEL">
+<meta property="og:description" content="The oldest fight in the book, executed gate by gate, on Arc. T-0 · Sep 18 · 17:30 UTC.">
 <meta property="og:image" content="https://cainabel.xyz/assets/og.jpg">
 <meta property="og:url" content="https://cainabel.xyz/">
 <meta property="og:type" content="website">
@@ -120,7 +120,7 @@
 <div class="overlay-top">
   <a class="brand" href="index.html">
     <div class="t">CAIN <span class="amp">&amp;</span> ABEL</div>
-    <div class="s">$CABEL · ROBINHOOD CHAIN · ONE FIELD, ONE SURVIVOR</div>
+    <div class="s">$CABEL · ON ARC · ONE FIELD, ONE SURVIVOR</div>
   </a>
 </div>
 
@@ -160,7 +160,7 @@
     <span class="t0">$CABEL · CA</span>
     <span class="js-ca mono" style="font-size:11px;max-width:46vw;overflow:hidden;text-overflow:ellipsis">SOON</span>
     <a href="#" id="ca-copy-g" style="color:var(--dim);text-decoration:none">COPY</a>
-    <a class="js-buy" href="https://www.ponsfamily.com/launchpad/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">BUY →</a>
+    <a class="js-buy" href="https://argus.world" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">BUY →</a>
   </div>
   <div class="countpill">
     <span class="t0">T-0 · THE FIELD OPENS</span>
@@ -189,7 +189,7 @@
   if (CONFIG.links?.github) document.getElementById('g-gh').href = CONFIG.links.github;
   const CA = CONFIG.CA || CONFIG.addresses?.token || '';
   if (CA) document.querySelectorAll('.js-ca').forEach((el) => { el.textContent = CA; });
-  if (CONFIG.PONS) document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.PONS + CA; });
+  if (CONFIG.BUY && CA) document.querySelectorAll('.js-buy').forEach((el) => { el.href = CONFIG.BUY + CA; });
   document.getElementById('ca-copy-g').onclick = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText(CA || document.querySelector('.js-ca').textContent);
